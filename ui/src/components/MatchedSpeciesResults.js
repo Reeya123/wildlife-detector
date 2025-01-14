@@ -23,7 +23,10 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
           method: "GET",
         }
       );
-
+      if (response.status === 404) {
+        setSpeciesResults([]);
+        return;
+      }
       if (!response.ok) {
         throw new Error("Failed to fetch species results");
       }
