@@ -1,11 +1,26 @@
-import ImageUploader from './components/imageUploader';
-import './App.css';
+import React, { useState } from "react";
+import ImageUploader from "./components/imageUploader";
+import MatchedSpeciesResults from "./components/MatchedSpeciesResults";
+import "./App.css";
 
 function App() {
+  const [uploadedFileName, setUploadedFileName] = useState(null);
+
+  const handleImageUploadSuccess = (fileName) => {
+    setUploadedFileName(fileName);
+    console.log("Uploaded File Name:", fileName);
+  };
+
   return (
     <div className="App">
-      <h1>Welcome to the frontend </h1>
-      <ImageUploader />
+      <h1>Wildlife Detector</h1>
+      {/* ImageUploader Component */}
+      <ImageUploader onUploadSuccess={handleImageUploadSuccess} />
+
+      {/* MatchedSpeciesResults Component */}
+      {uploadedFileName && (
+        <MatchedSpeciesResults uploadedImageKey={uploadedFileName} />
+      )}
     </div>
   );
 }

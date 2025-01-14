@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ImageUploader() {
+function ImageUploader({ onUploadSuccess }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadMessage, setUploadMessage] = useState("");
 
@@ -20,35 +20,42 @@ function ImageUploader() {
       // Step 1: Get the presigned URL from the Lambda API Gateway
       const response = await fetch(
         `https://hy6vcyxwth.execute-api.us-east-1.amazonaws.com/prd/generate-presigned-url?filename=${encodeURIComponent(
-          fileName)}` , 
-          {
-            method: 'GET',
-            headers: {
-              Origin: "http://localhost:3000", // Add this header explicitly
-            },
+          fileName
+        )}&contentType=${encodeURIComponent(selectedFile.type)}`,
+        {
+          method: "GET",
         }
       );
-      
+
       if (!response.ok) {
+        console.error("Failed to fetch presigned URL:", response.status, response.statusText);
         throw new Error("Failed to get presigned URL");
       }
-      console.log('Response Data:', response);
-      const { uploadURL } = await response.json();
-      console.log('Response Data:', uploadURL);
+
+      // Parse the raw response
+      const responseBody = await response.json();
+      console.log("Raw Response Body:", responseBody);
+
+      // Extract the presigned URL from the response
+      const uploadURL = JSON.parse(responseBody.body).uploadURL; // Properly parse the JSON-encoded body
+      console.log("Presigned URL:", uploadURL);
+
       // Step 2: Upload the file to S3 using the presigned URL
       const uploadResponse = await fetch(uploadURL, {
         method: "PUT",
         headers: {
-          "Content-Type": selectedFile.type, 
+          "Content-Type": selectedFile.type,
         },
         body: selectedFile,
       });
 
       if (!uploadResponse.ok) {
+        console.error("Failed to upload file:", uploadResponse.status, uploadResponse.statusText);
         throw new Error("Failed to upload the file");
       }
 
       setUploadMessage("File uploaded successfully!");
+      onUploadSuccess(fileName); // Pass the uploaded file name to the parent component
     } catch (error) {
       console.error("Error uploading the file:", error);
       setUploadMessage(`Error: ${error.message}`);
