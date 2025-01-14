@@ -52,13 +52,20 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
             <div key={index} className="species-card">
               <h3>{species.matched_species}</h3>
               <p><strong>Label:</strong> {species.label}</p>
-              <p><strong>Scientific Name:</strong> {species.metadata.ScientificName}</p>
-              <p><strong>Fun Fact:</strong> {species.metadata.FunFact}</p>
-              <p><strong>Description:</strong> {species.metadata.Description}</p>
-              <p><strong>Habitat:</strong> {species.metadata.Habitat}</p>
-              <p><strong>Lifespan:</strong> {species.metadata.Lifespan}</p>
-              <p><strong>Diet:</strong> {species.metadata.Diet}</p>
-              <p><strong>Migration Behavior:</strong> {species.metadata.MigrationBehavior}</p>
+                <p><strong>Fun Fact:</strong> {species.metadata.FunFact}</p>
+                <p><strong>Threats:</strong> {species.metadata.Threats}</p>
+                <p><strong>Cultural Significance:</strong> {species.metadata.CulturalSignificance}</p>
+                <p><strong>Scientific Name:</strong> {species.metadata.ScientificName}</p>
+                <p><strong>Species Name:</strong> {species.metadata.SpeciesName}</p>
+                <p><strong>Safety Advice:</strong> {species.metadata.SafetyAdvice}</p>
+                <p><strong>Description:</strong> {species.metadata.Description}</p>
+                <p><strong>Best Time to Spot:</strong> {species.metadata.BestTimeToSpot}</p>
+                <p><strong>Conservation Status:</strong> {species.metadata.ConservationStatus}</p>
+                <p><strong>Size:</strong> {species.metadata.Size}</p>
+                <p><strong>Habitat:</strong> {species.metadata.Habitat}</p>
+                <p><strong>Lifespan:</strong> {species.metadata.Lifespan}</p>
+                <p><strong>Diet:</strong> {species.metadata.Diet}</p>
+                <p><strong>Migration Behavior:</strong> {species.metadata.MigrationBehavior}</p>
             </div>
           ))}
         </div>

@@ -14,10 +14,7 @@ function App() {
   return (
     <div className="App">
       <h1>Wildlife Detector</h1>
-      {/* ImageUploader Component */}
       <ImageUploader onUploadSuccess={handleImageUploadSuccess} />
-
-      {/* MatchedSpeciesResults Component */}
       {uploadedFileName && (
         <MatchedSpeciesResults uploadedImageKey={uploadedFileName} />
       )}
