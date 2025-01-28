@@ -41,39 +41,59 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
     }
   };
 
-  if (loading) return <p>Loading species results...</p>;
-  if (error) return <p>Error: {error}</p>;
-
   return (
-    <div className="matched-species-container">
-      <h2>Matched Species Results</h2>
-      {speciesResults.length === 0 ? (
-        <p>No species matched.</p>
-      ) : (
-        <div className="species-list">
-          {speciesResults.map((species, index) => (
-            <div key={index} className="species-card">
-              <h3>{species.matched_species}</h3>
-              <p><strong>Label:</strong> {species.label}</p>
-                <p><strong>Fun Fact:</strong> {species.metadata.FunFact}</p>
-                <p><strong>Threats:</strong> {species.metadata.Threats}</p>
-                <p><strong>Cultural Significance:</strong> {species.metadata.CulturalSignificance}</p>
-                <p><strong>Scientific Name:</strong> {species.metadata.ScientificName}</p>
-                <p><strong>Species Name:</strong> {species.metadata.SpeciesName}</p>
-                <p><strong>Safety Advice:</strong> {species.metadata.SafetyAdvice}</p>
-                <p><strong>Description:</strong> {species.metadata.Description}</p>
-                <p><strong>Best Time to Spot:</strong> {species.metadata.BestTimeToSpot}</p>
-                <p><strong>Conservation Status:</strong> {species.metadata.ConservationStatus}</p>
-                <p><strong>Size:</strong> {species.metadata.Size}</p>
-                <p><strong>Habitat:</strong> {species.metadata.Habitat}</p>
-                <p><strong>Lifespan:</strong> {species.metadata.Lifespan}</p>
-                <p><strong>Diet:</strong> {species.metadata.Diet}</p>
-                <p><strong>Migration Behavior:</strong> {species.metadata.MigrationBehavior}</p>
+    <section className="bg-green-100 py-12 px-8">
+      <h2 className="text-2xl lg:text-4xl font-bold text-green-900 mb-6">
+        Species Matches
+      </h2>
+      <div className="text-lg flex justify-center gap-4 mb-4">
+        <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+          Mammals
+        </button>
+        <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+          Birds
+        </button>
+        <button className="px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500">
+          Plants
+        </button>
+      </div>
+
+      {loading && <p>Loading species results...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+        {speciesResults.length === 0 ? (
+          <p>No species matched. Please try uploading another image.</p>
+        ) : (
+          speciesResults.map((species, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-lg rounded-lg p-4 flex flex-col"
+            >
+              <h3 className="text-lg font-bold mb-2 text-green-800">
+                {species.matched_species}
+              </h3>
+              <p>
+                <strong>Scientific Name:</strong> {species.metadata.ScientificName}
+              </p>
+              <p>
+                <strong>Description:</strong> {species.metadata.Description}
+              </p>
+              <p>
+                <strong>Fun Fact:</strong> {species.metadata.FunFact}
+              </p>
+              <p>
+                <strong>Habitat:</strong> {species.metadata.Habitat}
+              </p>
+              <p>
+                <strong>Conservation Status:</strong>{" "}
+                {species.metadata.ConservationStatus}
+              </p>
             </div>
-          ))}
-        </div>
-      )}
-    </div>
+          ))
+        )}
+      </div>
+    </section>
   );
 };
 

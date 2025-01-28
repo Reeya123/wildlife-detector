@@ -50,21 +50,20 @@ const LandingSection = () => {
 
         {/* Parrot Image */}
         <div className="lg:w-1/2 relative mb-8 lg:mb-0">
-          <img
-            src="images/parrot_nobg1.png"
-            alt="Parrot"
-            className="
-              w-full 
-              max-w-md 
-              mx-auto 
-              lg:w-auto 
-              lg:max-w-none 
-              lg:absolute 
-              object-contain
-              lg:-top-20    /* pushes it upward on large screens */
-              lg:-right-11  /* shifts it to the right on large screens */
-            "
-          />
+        <img
+        src="images/parrot_nobg1.png"
+        alt="Parrot"
+        className="
+          w-[60vw]        /* Width scales dynamically as 60% of the viewport width */
+          max-w-[1000px]   /* Maximum width to avoid it growing too large on large screens */
+          lg:max-w-[1000px] /* Larger max width on desktops */
+          mx-auto         /* Center image horizontally on small screens */
+          lg:absolute     /* Position absolute on large screens */
+          lg:-top-20      /* Adjust vertical position on large screens */
+          lg:-right-11    /* Adjust horizontal position on large screens */
+          object-contain  /* Ensures the image maintains its aspect ratio */
+        "
+      />
         </div>
       </div>
     </section>
