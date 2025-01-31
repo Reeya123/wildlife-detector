@@ -1,3 +1,5 @@
+/*section 2 of ui. Displays species info in a grid layout*/
+
 import React, { useEffect, useState } from "react";
 
 const MatchedSpeciesResults = ({ uploadedImageKey }) => {

@@ -1,3 +1,6 @@
+/*Landing page Ui*/
+
+
 import React from "react";
 
 const LandingSection = () => {
