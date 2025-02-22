@@ -1,9 +1,64 @@
-/*Landing page Ui*/
+import React, { useState, useRef } from "react";
 
+const LandingSection = ({ onUploadSuccess }) => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [uploadMessage, setUploadMessage] = useState("");
+  const fileInputRef = useRef(null); // Reference to file input
 
-import React from "react";
-import ImageUploader from "./imageUploader";
-const LandingSection = () => {
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  const handleUploadClick = () => {
+    fileInputRef.current.click(); // Trigger file input dialog
+  };
+
+  const uploadImage = async () => {
+    if (!selectedFile) {
+      setUploadMessage("Please select a file to upload");
+      return;
+    }
+
+    try {
+      const fileName = selectedFile.name;
+
+      // Step 1: Get the presigned URL from API Gateway
+      const response = await fetch(
+        `https://hy6vcyxwth.execute-api.us-east-1.amazonaws.com/prd/generate-presigned-url?filename=${encodeURIComponent(
+          fileName
+        )}&contentType=${encodeURIComponent(selectedFile.type)}`,
+        {
+          method: "GET",
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Failed to fetch presigned URL:", response.status, response.statusText);
+        throw new Error("Failed to get presigned URL");
+      }
+
+      const responseBody = await response.json();
+      const uploadURL = JSON.parse(responseBody.body).uploadURL;
+
+      // Step 2: Upload file to S3
+      const uploadResponse = await fetch(uploadURL, {
+        method: "PUT",
+        headers: { "Content-Type": selectedFile.type },
+        body: selectedFile,
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error("Failed to upload the file");
+      }
+
+      setUploadMessage("File uploaded successfully!");
+      onUploadSuccess(fileName);
+    } catch (error) {
+      console.error("Error uploading the file:", error);
+      setUploadMessage(`Error: ${error.message}`);
+    }
+  };
+
   return (
     <section className="relative bg-darkgreen text-white min-h-screen flex flex-col">
       {/* Header */}
@@ -12,16 +67,10 @@ const LandingSection = () => {
           WanderWild
         </div>
         <nav className="flex gap-6 font-Garamond text-xl">
-          <a
-            href="#sample"
-            className="hover:bg-neongreen font-bold rounded-lg transition duration-300 px-2"
-          >
+          <a href="#sample" className="hover:bg-neongreen font-bold rounded-lg transition duration-300 px-2">
             Sample
           </a>
-          <a
-            href="#about"
-            className="hover:bg-neongreen font-bold rounded-lg transition duration-300 px-2"
-          >
+          <a href="#about" className="hover:bg-neongreen font-bold rounded-lg transition duration-300 px-2">
             About
           </a>
         </nav>
@@ -35,19 +84,47 @@ const LandingSection = () => {
             Why WanderWild?
           </h2>
           <p className="text-lg font-Lora leading-relaxed text-left">
-            Our tool is designed for anyone with a curiosity about the natural
-            world.
+            Our tool is designed for anyone with a curiosity about the natural world.
           </p>
           <p className="text-lg font-Lora leading-relaxed ">
-            Whether you&apos;re a nature enthusiast, a hiker, or a dedicated
-            wildlife explorer, this is your gateway to discovering species from
-            the wild.
+            Whether you're a nature enthusiast, a hiker, or a dedicated wildlife explorer, 
+            this is your gateway to discovering species from the wild.
           </p>
-          <button className="bg-neongreen text-darkgreen px-6 py-3 rounded-lg font-bold  text-left hover:bg-yellow-400 transition duration-300"
-          
-          >
-            Upload Image
-          </button>
+
+          {/* Upload Button (Merged with File Input) */}
+          <div className="flex items-center gap-4">
+            <button
+              className="bg-neongreen text-darkgreen px-6 py-3 rounded-lg font-bold text-left 
+                         hover:bg-yellow-400 transition duration-300"
+              onClick={handleUploadClick} // Click triggers file input
+            >
+              Upload Image
+            </button>
+            <span className="text-sm">{selectedFile ? selectedFile.name : "No file chosen"}</span>
+          </div>
+
+          {/* Hidden File Input */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef} // Assign ref
+            className="hidden" // Hide input field
+            onChange={handleFileChange}
+          />
+
+          {/* Upload Image */}
+          {selectedFile && (
+            <button
+              className="mt-2 bg-yellow-400 text-darkgreen px-4 py-2 rounded-lg font-bold 
+                         hover:bg-yellow-500 transition duration-300"
+              onClick={uploadImage}
+            >
+              Confirm & Upload
+            </button>
+          )}
+
+          {uploadMessage && <p className="text-white mt-2">{uploadMessage}</p>}
+
           <p className="text-lg font-Garamond text-left">
             Empowering Every Explorer with Wildlife Knowledge
           </p>
@@ -55,20 +132,12 @@ const LandingSection = () => {
 
         {/* Parrot Image */}
         <div className="lg:w-1/2 relative mb-8 lg:mb-0">
-        <img
-        src="images/parrot_nobg1.png"
-        alt="Parrot"
-        className="
-          w-[60vw]        /* Width scales dynamically as 60% of the viewport width */
-          max-w-[1000px]   /* Maximum width to avoid it growing too large on large screens */
-          lg:max-w-[1000px] /* Larger max width on desktops */
-          mx-auto         /* Center image horizontally on small screens */
-          lg:absolute     /* Position absolute on large screens */
-          lg:-top-20      /* Adjust vertical position on large screens */
-          lg:-right-11    /* Adjust horizontal position on large screens */
-          object-contain  /* Ensures the image maintains its aspect ratio */
-        "
-      />
+          <img
+            src="images/parrot_nobg1.png"
+            alt="Parrot"
+            className="w-[60vw] max-w-[1000px] lg:max-w-[1000px] mx-auto 
+                       lg:absolute lg:-top-20 lg:-right-11 object-contain"
+          />
         </div>
       </div>
     </section>
