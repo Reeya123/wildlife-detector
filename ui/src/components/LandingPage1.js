@@ -2,7 +2,7 @@
 
 
 import React from "react";
-
+import ImageUploader from "./imageUploader";
 const LandingSection = () => {
   return (
     <section className="relative bg-darkgreen text-white min-h-screen flex flex-col">
@@ -43,7 +43,9 @@ const LandingSection = () => {
             wildlife explorer, this is your gateway to discovering species from
             the wild.
           </p>
-          <button className="bg-neongreen text-darkgreen px-6 py-3 rounded-lg font-bold  text-left hover:bg-yellow-400 transition duration-300">
+          <button className="bg-neongreen text-darkgreen px-6 py-3 rounded-lg font-bold  text-left hover:bg-yellow-400 transition duration-300"
+          
+          >
             Upload Image
           </button>
           <p className="text-lg font-Garamond text-left">

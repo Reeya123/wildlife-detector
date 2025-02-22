@@ -44,18 +44,18 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
   };
 
   return (
-    <section className="bg-green-100 py-12 px-8">
-      <h2 className="text-2xl lg:text-4xl font-bold text-green-900 mb-6">
+    <section className="bg-white py-12 px-8">
+      <h2 className="text-2xl text-left lg:text-4xl font-bold text-green-900 mb-6">
         Species Matches
       </h2>
-      <div className="text-lg flex justify-center gap-4 mb-4">
-        <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+      <div className="text-lg text-right flex justify-center gap-4 mb-4">
+        <button className="px-4 py-2 text-green-900 font-bold rounded hover:bg-neongreen">
           Mammals
         </button>
-        <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        <button className="px-4 py-2 text-green-900 font-bold rounded hover:bg-neongreen">
           Birds
         </button>
-        <button className="px-4 py-2 bg-yellow-400 text-black rounded hover:bg-yellow-500">
+        <button className="px-4 py-2 text-green-900 font-bold rounded hover:bg-neongreen">
           Plants
         </button>
       </div>
@@ -70,7 +70,7 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
           speciesResults.map((species, index) => (
             <div
               key={index}
-              className="bg-white shadow-lg rounded-lg p-4 flex flex-col"
+              className="bg-white border-blue-500 shadow-lg rounded-lg p-4 flex flex-col"
             >
               <h3 className="text-lg font-bold mb-2 text-green-800">
                 {species.matched_species}
