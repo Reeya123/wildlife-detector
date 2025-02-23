@@ -67,7 +67,8 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
             className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
           />
         </div>
-        
+      
+
         <h2 className="text-2xl lg:text-4xl font-bold text-green-900 mb-6">
           Species Matches
         </h2>
