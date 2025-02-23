@@ -12,6 +12,14 @@ const SampleSpecies = ({ setSelectedSpecies, setSelectedSpeciesForDetail }) => {
 
   return (
     <section className="relative bg-darkgreen text-white min-h-screen py-12">
+        {/* Parrot Image */}
+        <div className="absolute -top-48 right-0">
+          <img
+            src="/images/blueparrot.png" 
+            alt="Parrot"
+            className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
+          />
+        </div>
       <h2 className="text-2xl lg:text-4xl font-bold text-center mb-6">
         Popular Species Found on Treks
       </h2>

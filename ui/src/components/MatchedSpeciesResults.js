@@ -62,143 +62,126 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
         {/* Lemur Image */}
         <div className="absolute -top-24 left-0">
           <img
-            src="/images/Lemur.png" 
+            src="/images/Lemur.png"
             alt="Lemur"
             className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
           />
         </div>
-      
-
-        <h2 className="text-2xl lg:text-4xl font-bold text-green-900 mb-6">
+    
+        {/* Title */}
+        <h2 className="text-3xl lg:text-4xl font-PlayfairDisplay font-bold  text-darkgreen text-center mb-6">
           Species Matches
         </h2>
-  
+    
         {/* Category Buttons */}
-        <div className="flex justify-center gap-4 mb-4">
-          <button className="px-4 py-2 text-green-900 font-bold rounded hover:bg-neongreen">
+        <div className="flex justify-center gap-4 mb-8">
+          <button className="px-6 py-2 text-darkgreen text-2xl font-Garamond font-bold rounded-md hover:bg-neongreen transition">
             Mammals
           </button>
-          <button className="px-4 py-2 text-green-900 font-bold rounded hover:bg-neongreen">
+          <button className="px-6 py-2 text-darkgreen text-2xl font-Garamond font-bold rounded-md hover:bg-neongreen transition">
             Birds
           </button>
-          <button className="px-4 py-2 text-green-900 font-bold rounded hover:bg-neongreen">
+          <button className="px-6 py-2 text-darkgreen text-2xl font-Garamond font-bold rounded-md hover:bg-neongreen transition">
             Plants
           </button>
         </div>
-  
-        {loading && <p>Loading species results...</p>}
-        {error && <p className="text-red-500">Error: {error}</p>}
-  
+    
+        {loading && <p className="text-center text-green-800">Loading species results...</p>}
+        {error && <p className="text-center text-red-500">Error: {error}</p>}
+    
         {speciesResults.length > 0 && (
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center mt-6">
             {/* Left Arrow */}
             <button
               onClick={prevSpecies}
-              className="absolute left-0 top-1/2 transform -translate-y-1/2 text-green-800 text-3xl p-3 hover:text-neongreen"
+              className="absolute left-0 top-1/2 transform -translate-y-1/2 text-darkgreen text-4xl p-3 hover:text-neongreen"
             >
               <FaArrowLeft />
             </button>
-  
+    
             {/* Species Information in Grid Layout */}
             <div className="bg-white border shadow-lg rounded-lg p-6 flex flex-col items-center w-4/5">
-              <h3 className="text-2xl font-bold text-green-800 mb-3">
+              <h3 className="text-3xl font-bold text-green-800 mb-6">
                 {speciesResults[currentIndex].matched_species}
               </h3>
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 w-full">
-                {/* Left Column */}
-                <div className="bg-green-100 p-4 rounded-lg shadow">
-                  <p>
-                    <strong>Scientific Name:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.ScientificName}
-                  </p>
-                  <p>
-                    <strong>Description:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Description}
-                  </p>
-                  <p>
-                    <strong>Habitat:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Habitat}
-                  </p>
-                  <p>
-                    <strong>Size:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Size}
-                  </p>
-                  <p>
-                    <strong>Lifespan:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Lifespan}
-                  </p>
-                  <p>
-                    <strong>Category:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Category}
-                  </p>
-                </div>
-  
-                {/* Middle Column */}
-                <div className="bg-green-100 p-4 rounded-lg shadow">
-                <p>
-                    <strong>Migratory Behaviour:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.MigrationBehavior}
-                  </p>
-                  <p>
-                    <strong>Sound:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Sound}
-                  </p>
-                  <p>
-                    <strong>Diet:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Diet}
-                  </p>
-                  <p>
-                    <strong>Safety Advice:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.SafetyAdvice}
-                  </p>
-                </div>
-  
-                {/* Right Column */}
-                <div className="bg-green-100 p-4 rounded-lg shadow">
-                  <p>
-                    <strong>Conservation Status:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.ConservationStatus}
-                  </p>
-                  <p>
-                    <strong>Cultural Significance:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.CulturalSignificance}
-                  </p>
-                  <p>
-                    <strong>Threats:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.Threats}
-                  </p>
-                </div>
+    
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 w-full">
 
-                {/* Right Column */}
-                <div className="bg-green-100 p-4 rounded-lg shadow">
-                  <p>
-                    <strong>Fun Details:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.FunFact}
-                  </p>
-                  <p>
-                    <strong>Best Time to Spot:</strong>{" "}
-                    {speciesResults[currentIndex].metadata.BestTimeToSpot}
-                  </p>
-                  
+              {/* Box 1 */}
+              <div 
+                className="relative bg-white border-2 border-neongreen p-6 rounded-lg shadow-lg col-span-2 group transition duration-300 ease-in-out 
+                hover:bg-cover hover:bg-center hover:text-white" 
+                style={{
+                  backgroundImage: "none",
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundImage = "url('/images/bgplant.jpg')"}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundImage = "none"}
+              >
+                {/* Background Overlay for Readability */}
+                <div className="absolute inset-0 bg-black bg-opacity-30 opacity-0 group-hover:opacity-100 transition duration-300 ease-in-out rounded-lg"></div>
+
+
+                <div className="relative z-10">
+                  <p><strong>Scientific Name:</strong> {speciesResults[currentIndex].metadata.ScientificName}</p>
+                  <p><strong>Description:</strong> {speciesResults[currentIndex].metadata.Description}</p>
+                  <p><strong>Habitat:</strong> {speciesResults[currentIndex].metadata.Habitat}</p>
+                  <p><strong>Size:</strong> {speciesResults[currentIndex].metadata.Size}</p>
+                  <p><strong>Lifespan:</strong> {speciesResults[currentIndex].metadata.Lifespan}</p>
+                  <p><strong>Category:</strong> {speciesResults[currentIndex].metadata.Category}</p>
                 </div>
               </div>
+
+
+                {/* Box2 */}
+                <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
+                  <p><strong>Migratory Behaviour:</strong> {speciesResults[currentIndex].metadata.MigrationBehavior}</p>
+                  <p><strong>Sound:</strong> {speciesResults[currentIndex].metadata.Sound}</p>
+                  <p><strong>Diet:</strong> {speciesResults[currentIndex].metadata.Diet}</p>
+                  <p><strong>Safety Advice:</strong> {speciesResults[currentIndex].metadata.SafetyAdvice}</p>
+                </div>
+
+                {/* Box 3 */}
+                <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
+                  <p><strong>Conservation Status:</strong> {speciesResults[currentIndex].metadata.ConservationStatus}</p>
+                  <p><strong>Cultural Significance:</strong> {speciesResults[currentIndex].metadata.CulturalSignificance}</p>
+                  <p><strong>Threats:</strong> {speciesResults[currentIndex].metadata.Threats}</p>
+                </div>
+
+                {/* Box4 */}
+                <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
+                <p><strong>Fun Details:</strong> {speciesResults[currentIndex].metadata.FunFact}</p>
+                <p><strong>Best Time to Spot:</strong> {speciesResults[currentIndex].metadata.BestTimeToSpot}</p>
+                </div>
+    
+                
+    
+                
+                {/* Right Column */}
+                <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
+                  <p>should have image!</p>
+                </div>
+    
+                
+              </div>
             </div>
-  
+    
             {/* Right Arrow */}
             <button
               onClick={nextSpecies}
-              className="absolute right-0 top-1/2 transform -translate-y-1/2 text-green-800 text-3xl p-3 hover:text-neongreen"
+              className="absolute right-0 top-1/2 transform -translate-y-1/2 text-darkgreen text-4xl p-3 hover:text-neongreen"
             >
               <FaArrowRight />
             </button>
           </div>
         )}
-  
+    
         {speciesResults.length === 0 && !loading && !error && (
-          <p>No species matched. Please try uploading another image.</p>
+          <p className="text-center text-green-900 mt-6">No species matched. Please try uploading another image.</p>
         )}
       </section>
     );
+    
   };
 
 export default MatchedSpeciesResults;
+

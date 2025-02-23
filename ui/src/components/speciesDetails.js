@@ -11,35 +11,46 @@ const SpeciesDetail = ({ species, goBack }) => {
         ← Back
       </button>
 
-      {/* Species Image */}
-      <div className="relative">
-        <img
-          src={species.ImageURL}
-          alt={species.SpeciesName}
-          className="w-[300px] h-[300px] object-contain mx-auto shadow-lg rounded-full border-4 border-yellow-400"
-        />
-      </div>
+      {/* Main Container */}
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 w-full max-w-6xl">
+        {/* Side Fox Images */}
+        <div className="flex flex-col gap-4">
+          <img src={species.ImageURL} alt="Fox 1" className="w-28 h-28 rounded-lg shadow-lg" />
+          <img src={species.ImageURL} alt="Fox 2" className="w-28 h-28 rounded-lg shadow-lg" />
+          <img src={species.ImageURL} alt="Fox 3" className="w-28 h-28 rounded-lg shadow-lg" />
+          <img src={species.ImageURL} alt="Fox 4" className="w-28 h-28 rounded-lg shadow-lg" />
+        </div>
 
-      {/* Species Info */}
-      <div className="text-center mt-6">
-        <h2 className="text-4xl font-bold text-yellow-400">{species.SpeciesName}</h2>
-        <p className="italic text-lg">{species.ScientificName}</p>
-        <p className="mt-4 max-w-2xl mx-auto">{species.Description}</p>
-      </div>
+        {/* Main Species Image */}
+        <div className="relative">
+          <img
+            src={species.ImageURL}
+            alt={species.SpeciesName}
+            className="w-[300px] h-[300px] object-contain mx-auto shadow-lg rounded-full border-4 border-yellow-400"
+          />
+        </div>
 
-      {/* Additional Info Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 max-w-4xl">
-        <div className="bg-green-700 p-4 rounded-lg shadow-lg">
-          <p><strong>Habitat:</strong> {species.Habitat}</p>
-        </div>
-        <div className="bg-green-700 p-4 rounded-lg shadow-lg">
-          <p><strong>Diet:</strong> {species.Diet}</p>
-        </div>
-        <div className="bg-green-700 p-4 rounded-lg shadow-lg">
-          <p><strong>Fun Fact:</strong> {species.FunFact}</p>
-        </div>
-        <div className="bg-green-700 p-4 rounded-lg shadow-lg">
-          <p><strong>Conservation Status:</strong> {species.ConservationStatus}</p>
+        {/* Species Info */}
+        <div className="text-left mt-6">
+          <h2 className="text-4xl font-bold text-yellow-400">{species.SpeciesName}</h2>
+          <p className="italic text-lg">{species.ScientificName}</p>
+          <p className="mt-4 max-w-2xl">{species.Description}</p>
+
+          {/* Additional Info Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 max-w-4xl">
+            <div className="bg-green-700 p-4 rounded-lg shadow-lg">
+              <p><strong>Habitat:</strong> {species.Habitat}</p>
+            </div>
+            <div className="bg-green-700 p-4 rounded-lg shadow-lg">
+              <p><strong>Diet:</strong> {species.Diet}</p>
+            </div>
+            <div className="bg-green-700 p-4 rounded-lg shadow-lg">
+              <p><strong>Fun Fact:</strong> {species.FunFact}</p>
+            </div>
+            <div className="bg-green-700 p-4 rounded-lg shadow-lg">
+              <p><strong>Conservation Status:</strong> {species.ConservationStatus}</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
