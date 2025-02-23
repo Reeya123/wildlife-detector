@@ -16,7 +16,13 @@
     "BestTimeToSpot": "Dawn or dusk",
     "Sound": "High-pitched bark",
     "Category": "Mammal",
-    "ImageURL": "/images/Lemur.png"
+    "ImageURL": "/images/redFox/Foxmain.jpg",
+    "extraImages": [
+    "/images/redFox/redfox1.png",
+    "/images/redFox/redfox2.png",
+    "/images/redFox/redfox3.png",
+    "/images/redFox/redfox4.png"
+  ]
 },
 
 {   "SpeciesID": "S006",
