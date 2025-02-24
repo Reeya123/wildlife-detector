@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const SampleSpecies = ({ setSelectedSpecies, setSelectedSpeciesForDetail }) => {
+const SampleSpecies = ({ setSelectedSpeciesForDetail }) => {
   const [species, setSpecies] = useState([]);
 
   useEffect(() => {
@@ -11,31 +11,41 @@ const SampleSpecies = ({ setSelectedSpecies, setSelectedSpeciesForDetail }) => {
   }, []);
 
   return (
-    <section className="relative bg-darkgreen text-white min-h-screen py-12">
-        {/* Parrot Image */}
-        <div className="absolute -top-48 right-0">
-          <img
-            src="/images/blueparrot.png" 
-            alt="Parrot"
-            className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
-          />
-        </div>
-      <h2 className="text-2xl lg:text-4xl font-bold text-center mb-6">
+    <section className="relative bg-darkgreen text-white min-h-screen py-12 px-8">
+      <div className="absolute  -top-44 right-0">
+        <img
+          src="/images/blueparrot.png"
+          alt="Parrot"
+          className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
+        />
+      
+      </div>
+
+      <h2 className="text-3xl lg:text-4xl font-Garamond font-bold text-center mb-8">
         Popular Species Found on Treks
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {species.map((item, index) => (
           <div
             key={index}
-            className="bg-green-800 border border-yellow-500 shadow-lg rounded-lg p-6 cursor-pointer hover:bg-green-700 transition duration-300"
-            onClick={() => setSelectedSpeciesForDetail(item)} // Now moves to Section 4
+            className="relative bg-darkgreen border-2 border-yellow-400 shadow-lg rounded-lg cursor-pointer transition duration-500 overflow-hidden group"
+            onClick={() => setSelectedSpeciesForDetail(item)}
           >
-            <h3 className="text-lg font-bold mb-2 text-yellow-400">{item.SpeciesName}</h3>
-            <p className="italic text-sm">{item.ScientificName}</p>
-            <p><strong>Habitat:</strong> {item.Habitat}</p>
-            <p><strong>Fun Fact:</strong> {item.FunFact}</p>
-            <p><strong>Diet:</strong> {item.Diet}</p>
+            {/* Text absolute positioned */}
+            <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-20 text-center bg-black bg-opacity-50 px-4 py-1 rounded">
+              <h3 className="text-lg font-bold">{item.SpeciesName}</h3>
+              <p className="italic text-sm">{item.Category}</p>
+            </div>
+
+            {/* Image container */}
+            <div className="w-full h-56 overflow-hidden relative">
+              <img
+                src={item.ImageURL}
+                alt={item.SpeciesName}
+                className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 scale-125 transition-transform duration-500 ease-in-out group-hover:translate-y-0 group-hover:scale-100 object-cover"
+              />
+            </div>
           </div>
         ))}
       </div>

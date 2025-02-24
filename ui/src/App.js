@@ -20,13 +20,11 @@ function App() {
       {/* Landing Section (Section 1) */}
       <LandingSection onUploadSuccess={handleImageUploadSuccess} />
 
-      {/* Show Matched Species Section (Section 2) if an image is uploaded or a species is selected */}
-      {(uploadedFileName || selectedSpecies) && (
-        <MatchedSpeciesResults 
-          uploadedImageKey={uploadedFileName} 
-          selectedSpecies={selectedSpecies} 
-        />
-      )}
+      {/* Matched Species Results Section (Section 2 always visible) */}
+      <MatchedSpeciesResults 
+        uploadedImageKey={uploadedFileName} 
+        selectedSpecies={selectedSpecies} 
+      />
 
       {/* Show Sample Species Section (Section 3) only if Section 4 is NOT active */}
       {!selectedSpeciesForDetail && (
