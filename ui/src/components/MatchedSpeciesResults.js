@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 const MatchedSpeciesResults = ({ uploadedImageKey }) => {
   const [speciesResults, setSpeciesResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -52,13 +52,22 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
   return (
     <section className="relative bg-white py-12 px-8 min-h-screen">
       {/* Lemur Image Always Shown */}
-      <div className="absolute -top-24 left-0">
-        <img
-          src="/images/Lemur.png"
-          alt="Lemur"
-          className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
-        />
-      </div>
+      <motion.div
+      className="absolute -top-24 left-0"
+      initial={{ opacity: 0, y: -50 }} // Starts off-screen and transparent
+      whileInView={{ opacity: 1, y: 0 }} // Fades in and moves down into position
+      transition={{
+        duration: 1, // Smooth animation over 1 second
+        ease: "easeOut",
+      }}
+      viewport={{ once: true }} // Ensures animation runs only once per session
+    >
+      <img
+        src="/images/Lemur.png"
+        alt="Lemur"
+        className="w-48 md:w-56 lg:w-64 drop-shadow-lg"
+      />
+    </motion.div>
 
       {/* Title Always Shown */}
       <h2 className="text-3xl lg:text-4xl font-PlayfairDisplay font-bold text-darkgreen text-center mb-6">
@@ -101,37 +110,50 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
           </button>
 
           {/* Species Details */}
-          <div className="bg-white border shadow-lg rounded-lg p-6 flex flex-col items-center w-4/5">
-            <h3 className="text-3xl font-bold text-green-800 mb-6">
+          <div className="bg-white border shadow-lg rounded-lg p-6 flex flex-col items-left w-4/5">
+            <h3 className="text-3xl font-bold font-PlayfairDisplay text-green-800 mb-6">
               {speciesResults[currentIndex].matched_species}
             </h3>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 w-full">
-              {/* Detailed boxes go here as per your existing layout */}
-              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg col-span-2">
-                <p><strong>Scientific Name:</strong> {speciesResults[currentIndex].metadata.ScientificName}</p>
-                <p><strong>Description:</strong> {speciesResults[currentIndex].metadata.Description}</p>
-                <p><strong>Habitat:</strong> {speciesResults[currentIndex].metadata.Habitat}</p>
-                <p><strong>Size:</strong> {speciesResults[currentIndex].metadata.Size}</p>
-                <p><strong>Lifespan:</strong> {speciesResults[currentIndex].metadata.Lifespan}</p>
-                <p><strong>Category:</strong> {speciesResults[currentIndex].metadata.Category}</p>
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 w-full ">
+            {/* Detailed boxes */}
+            <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg col-span-2 
+                        font-bold  transition duration-300 ease-in-out 
+                        text-mossgreen hover:bg-darkgreen group ">
+              
+              <p className="font-bold font-PlayfairDisplay text-darkgreen group-hover:text-neongreen">
+                {speciesResults[currentIndex].metadata.SpeciesName}
+              </p>
+
+              <p className=" font-bold font-Garamond text-italic group-hover:text-white">
+                <strong className="text-italic"></strong> {speciesResults[currentIndex].metadata.ScientificName}
+              </p>
+
+              <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Description:</strong> {speciesResults[currentIndex].metadata.Description}</p>
+              <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Habitat:</strong> {speciesResults[currentIndex].metadata.Habitat}</p>
+              <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Size:</strong> {speciesResults[currentIndex].metadata.Size}</p>
+              <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Lifespan:</strong> {speciesResults[currentIndex].metadata.Lifespan}</p>
+              <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Category:</strong> {speciesResults[currentIndex].metadata.Category}</p>
+              
+              
               </div>
-              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
-                <p><strong>Migratory Behaviour:</strong> {speciesResults[currentIndex].metadata.MigrationBehavior}</p>
-                <p><strong>Sound:</strong> {speciesResults[currentIndex].metadata.Sound}</p>
-                <p><strong>Diet:</strong> {speciesResults[currentIndex].metadata.Diet}</p>
-                <p><strong>Safety Advice:</strong> {speciesResults[currentIndex].metadata.SafetyAdvice}</p>
+
+              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lgfont-bold  transition duration-300 ease-in-out  text-darkgreen hover:bg-darkgreen group ">
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Migratory Behaviour:</strong> {speciesResults[currentIndex].metadata.MigrationBehavior}</p>
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Sound:</strong> {speciesResults[currentIndex].metadata.Sound}</p>
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Diet:</strong> {speciesResults[currentIndex].metadata.Diet}</p>
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Safety Advice:</strong> {speciesResults[currentIndex].metadata.SafetyAdvice}</p>
               </div>
-              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
-                <p><strong>Conservation Status:</strong> {speciesResults[currentIndex].metadata.ConservationStatus}</p>
-                <p><strong>Cultural Significance:</strong> {speciesResults[currentIndex].metadata.CulturalSignificance}</p>
-                <p><strong>Threats:</strong> {speciesResults[currentIndex].metadata.Threats}</p>
+              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg font-bold  transition duration-300 ease-in-out  text-darkgreen hover:bg-darkgreen group">
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Conservation Status:</strong> {speciesResults[currentIndex].metadata.ConservationStatus}</p>
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Cultural Significance:</strong> {speciesResults[currentIndex].metadata.CulturalSignificance}</p>
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Threats:</strong> {speciesResults[currentIndex].metadata.Threats}</p>
               </div>
-              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
-                <p><strong>Fun Details:</strong> {speciesResults[currentIndex].metadata.FunFact}</p>
-                <p><strong>Best Time to Spot:</strong> {speciesResults[currentIndex].metadata.BestTimeToSpot}</p>
+              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg font-bold  transition duration-300 ease-in-out  text-darkgreen hover:bg-darkgreen group">
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Fun Details:</strong> {speciesResults[currentIndex].metadata.FunFact}</p>
+                <p className="font-bold font-Garamond group-hover:text-white"><strong className="group-hover:text-yellow-400">Best Time to Spot:</strong> {speciesResults[currentIndex].metadata.BestTimeToSpot}</p>
               </div>
-              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg">
+              <div className="bg-grey border-2 border-neongreen p-6 rounded-lg shadow-lg font-bold  transition duration-300 ease-in-out  text-darkgreen hover:bg-darkgreen group">
                 <img src={speciesResults[currentIndex].metadata.ImageURL} alt={speciesResults[currentIndex].matched_species} />
               </div>
             </div>

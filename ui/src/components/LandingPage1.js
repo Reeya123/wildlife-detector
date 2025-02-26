@@ -125,7 +125,7 @@ const LandingSection = ({ onUploadSuccess }) => {
 
           {uploadMessage && <p className="text-white mt-2">{uploadMessage}</p>}
 
-          <p className="text-lg font-Garamond text-left">
+          <p className="text-lg font-Garamond text-left text-neongreen">
             Empowering Every Explorer with Wildlife Knowledge
           </p>
         </div>

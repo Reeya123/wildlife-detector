@@ -8,6 +8,7 @@ module.exports = {
       colors:{
         darkgreen: '#1B3500',
         neongreen: '#DDF113',
+        mossgreen: '#606c38',
 
       },
       fontFamily: {
