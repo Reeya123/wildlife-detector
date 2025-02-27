@@ -1,12 +1,16 @@
 import React, { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { FaUpload, FaCheck, FaSpinner } from "react-icons/fa";
 
 const LandingSection = ({ onUploadSuccess }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadMessage, setUploadMessage] = useState("");
-  const fileInputRef = useRef(null); // Reference to file input
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
+    setUploadMessage("");
   };
 
   const handleUploadClick = () => {
@@ -19,6 +23,7 @@ const LandingSection = ({ onUploadSuccess }) => {
       return;
     }
 
+    setUploading(true);
     try {
       const fileName = selectedFile.name;
 
@@ -27,15 +32,10 @@ const LandingSection = ({ onUploadSuccess }) => {
         `https://hy6vcyxwth.execute-api.us-east-1.amazonaws.com/prd/generate-presigned-url?filename=${encodeURIComponent(
           fileName
         )}&contentType=${encodeURIComponent(selectedFile.type)}`,
-        {
-          method: "GET",
-        }
+        { method: "GET" }
       );
 
-      if (!response.ok) {
-        console.error("Failed to fetch presigned URL:", response.status, response.statusText);
-        throw new Error("Failed to get presigned URL");
-      }
+      if (!response.ok) throw new Error("Failed to get presigned URL");
 
       const responseBody = await response.json();
       const uploadURL = JSON.parse(responseBody.body).uploadURL;
@@ -47,15 +47,14 @@ const LandingSection = ({ onUploadSuccess }) => {
         body: selectedFile,
       });
 
-      if (!uploadResponse.ok) {
-        throw new Error("Failed to upload the file");
-      }
+      if (!uploadResponse.ok) throw new Error("Failed to upload the file");
 
       setUploadMessage("File uploaded successfully!");
       onUploadSuccess(fileName);
+      setUploading(false);
     } catch (error) {
-      console.error("Error uploading the file:", error);
       setUploadMessage(`Error: ${error.message}`);
+      setUploading(false);
     }
   };
 
@@ -83,22 +82,40 @@ const LandingSection = ({ onUploadSuccess }) => {
           <h2 className="text-4xl lg:text-5xl font-PlayfairDisplay font-bold text-left">
             Why WanderWild?
           </h2>
-          <p className="text-lg font-Lora leading-relaxed text-left">
+          <p className="text-lg font-Lora leading-relaxed">
             Our tool is designed for anyone with a curiosity about the natural world.
           </p>
-          <p className="text-lg font-Lora leading-relaxed ">
+          <p className="text-lg font-Lora leading-relaxed">
             Whether you're a nature enthusiast, a hiker, or a dedicated wildlife explorer, 
             this is your gateway to discovering species from the wild.
           </p>
 
-          {/* Upload Button (Merged with File Input) */}
+          {/* Upload Button */}
           <div className="flex items-center gap-4">
             <button
-              className="bg-neongreen text-darkgreen px-6 py-3 rounded-lg font-bold text-left 
-                         hover:bg-yellow-400 transition duration-300"
-              onClick={handleUploadClick} // Click triggers file input
+              className={`flex items-center justify-center gap-3 w-48 px-6 py-3 rounded-lg font-bold transition duration-300
+                ${
+                  selectedFile
+                    ? "bg-yellow-400 hover:bg-yellow-500 text-darkgreen"
+                    : "bg-neongreen hover:bg-green-500 text-darkgreen"
+                }
+              `}
+              onClick={selectedFile ? uploadImage : handleUploadClick}
+              disabled={uploading}
             >
-              Upload Image
+              {uploading ? (
+                <>
+                  <FaSpinner className="animate-spin" /> Uploading...
+                </>
+              ) : selectedFile ? (
+                <>
+                  <FaCheck /> Confirm & Upload
+                </>
+              ) : (
+                <>
+                  <FaUpload /> Upload Image
+                </>
+              )}
             </button>
             <span className="text-sm">{selectedFile ? selectedFile.name : "No file chosen"}</span>
           </div>
@@ -107,21 +124,10 @@ const LandingSection = ({ onUploadSuccess }) => {
           <input
             type="file"
             accept="image/*"
-            ref={fileInputRef} // Assign ref
-            className="hidden" // Hide input field
+            ref={fileInputRef}
+            className="hidden"
             onChange={handleFileChange}
           />
-
-          {/* Upload Image */}
-          {selectedFile && (
-            <button
-              className="mt-2 bg-yellow-400 text-darkgreen px-4 py-2 rounded-lg font-bold 
-                         hover:bg-yellow-500 transition duration-300"
-              onClick={uploadImage}
-            >
-              Confirm & Upload
-            </button>
-          )}
 
           {uploadMessage && <p className="text-white mt-2">{uploadMessage}</p>}
 
@@ -130,15 +136,20 @@ const LandingSection = ({ onUploadSuccess }) => {
           </p>
         </div>
 
-        {/* Parrot Image */}
-        <div className="lg:w-1/2 relative mb-8 lg:mb-0">
+        {/* Parrot Image with Scroll Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          className="lg:w-1/2 relative mb-8 lg:mb-0"
+        >
           <img
             src="images/parrot_nobg1.png"
             alt="Parrot"
             className="w-[60vw] max-w-[1000px] lg:max-w-[1000px] mx-auto 
                        lg:absolute lg:-top-20 lg:-right-11 object-contain"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
