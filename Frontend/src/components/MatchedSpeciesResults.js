@@ -19,8 +19,9 @@ const MatchedSpeciesResults = ({ uploadedImageKey }) => {
     setLoading(true);
     setError("");
     try {
+      const apiBaseUrl = process.env.REACT_APP_API_BASE_URL; // Fetching from env
       const response = await fetch(
-        `https://hy6vcyxwth.execute-api.us-east-1.amazonaws.com/prd/species-data-fetcher?filename=${encodeURIComponent(imageKey)}`
+        `${apiBaseUrl}/species-data-fetcher?filename=${encodeURIComponent(imageKey)}`
       );
 
       if (response.status === 404) {

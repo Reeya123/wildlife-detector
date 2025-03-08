@@ -26,10 +26,11 @@ const LandingSection = ({ onUploadSuccess }) => {
     setUploading(true);
     try {
       const fileName = selectedFile.name;
+      const apiBaseUrl = process.env.REACT_APP_API_BASE_URL; // Fetching from env
 
       // Step 1: Get the presigned URL from API Gateway
       const response = await fetch(
-        `https://hy6vcyxwth.execute-api.us-east-1.amazonaws.com/prd/generate-presigned-url?filename=${encodeURIComponent(
+        `${apiBaseUrl}/generate-presigned-url?filename=${encodeURIComponent(
           fileName
         )}&contentType=${encodeURIComponent(selectedFile.type)}`,
         { method: "GET" }

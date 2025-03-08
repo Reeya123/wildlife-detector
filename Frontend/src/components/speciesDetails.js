@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaRuler, FaLeaf, FaPaw, FaGlobeAmericas } from "react-icons/fa"; // Icons
+import { FaRuler, FaLeaf, FaPaw, FaGlobeAmericas } from "react-icons/fa"; 
 
 const SpeciesDetail = ({ species, goBack }) => {
   return (
