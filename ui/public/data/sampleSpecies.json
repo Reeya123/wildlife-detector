@@ -16,7 +16,7 @@
     "BestTimeToSpot": "Dawn or dusk",
     "Sound": "High-pitched bark",
     "Category": "Mammal",
-    "ImageURL": "/images/redFox/Foxmain.jpg",
+    "ImageURL": "/images/redFox/redfox4.png",
     "extraImages": [
     "/images/redFox/redfox1.png",
     "/images/redFox/redfox2.png",
@@ -43,7 +43,7 @@
         "BestTimeToSpot": "Morning and evening",
         "Sound": "High-pitched whistle",
         "Category": "Bird",
-        "ImageURL": "/images/Eagle/eagle2.png"
+        "ImageURL": "/images/Eagle/eagle1.png"
     },
 
     {   "SpeciesID": "S003",

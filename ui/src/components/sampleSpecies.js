@@ -36,17 +36,18 @@ const SampleSpecies = ({ setSelectedSpeciesForDetail }) => {
           >
             {/* Circular Background Wrapper */}
             <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 transition-all duration-500">
-              {/* Circle Background (pseudo-card) */}
+              {/* Circle Background */}
               <div className="absolute inset-0 bg-neongreen rounded-full shadow-lg transition-all duration-500 group-hover:bg-yellow-300 z-0" />
 
-              {/* Species Image */}
-              <img
-                src={item.ImageURL}
-                alt={item.SpeciesName}
-                className="relative z-10 w-4/5 h-4/5 object-cover mx-auto
-                           transition-all duration-500 ease-in-out
-                           group-hover:scale-125 group-hover:-translate-y-6"
-              />
+              {/* Species Image - Ensures Image is Properly Contained */}
+              <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
+                <img
+                  src={item.ImageURL}
+                  alt={item.SpeciesName}
+                  className="w-full h-full object-contain transition-all duration-500 ease-in-out 
+                             group-hover:scale-125 group-hover:-translate-y-6"
+                />
+              </div>
             </div>
 
             {/* Species Name & Category */}
