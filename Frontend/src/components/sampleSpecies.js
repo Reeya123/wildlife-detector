@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 
 const SampleSpecies = ({ setSelectedSpeciesForDetail }) => {
   const [species, setSpecies] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleCard = (index) => {
+    setActiveIndex(activeIndex === index ? null : index); // Toggle collapsible card
+  };
 
   useEffect(() => {
     fetch("/data/sampleSpecies.json")
@@ -31,29 +36,32 @@ const SampleSpecies = ({ setSelectedSpeciesForDetail }) => {
         {species.map((item, index) => (
           <div
             key={index}
-            className="flex flex-col items-center space-y-4 cursor-pointer transition-all duration-500 group"
+            className={`relative flex flex-col items-center cursor-pointer transition-all duration-500 group 
+              bg-darkgreen border border-yellow-500 shadow-lg rounded-lg w-80 h-86`} // **Set fixed width & height**
             onClick={() => setSelectedSpeciesForDetail(item)}
           >
-            {/* Circular Background Wrapper */}
-            <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 transition-all duration-500">
-              {/* Circle Background */}
-              <div className="absolute inset-0 bg-neongreen rounded-full shadow-lg transition-all duration-500 group-hover:bg-yellow-300 z-0" />
-
-              {/* Species Image - Ensures Image is Properly Contained */}
-              <div className="relative z-10 w-full h-full flex items-center justify-center p-4">
-                <img
-                  src={item.ImageURL}
-                  alt={item.SpeciesName}
-                  className="w-full h-full object-contain transition-all duration-500 ease-in-out 
-                             group-hover:scale-125 group-hover:-translate-y-6"
-                />
-              </div>
+            {/* Species Image */}
+            <div className="w-full h-56 overflow-hidden rounded-t-lg">
+              <img
+                src={item.ImageURL}
+                alt={item.SpeciesName}
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            {/* Species Name & Category */}
-            <div className="text-center">
-              <h3 className="text-2xl font-bold">{item.SpeciesName}</h3>
-              <p className="text-lg font-Garamond opacity-90">{item.Category}</p>
+            {/* Card Header */}
+            <div className="flex flex-col justify-between flex-1 w-full px-6 py-4 bg-dark-moss-green text-cornsilk">
+              <div>
+                <h3 className="text-xl font-bold">{item.SpeciesName}</h3>
+                <p className="text-sm text-earth-yellow">{item.Category}</p>
+              </div>
+              <span
+                className={`text-earth-yellow text-2xl transform ${
+                  activeIndex === index ? "rotate-45" : "rotate-0"
+                } transition-transform self-end`}
+              >
+                
+              </span>
             </div>
           </div>
         ))}

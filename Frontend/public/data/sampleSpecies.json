@@ -16,7 +16,7 @@
     "BestTimeToSpot": "Dawn or dusk",
     "Sound": "High-pitched bark",
     "Category": "Mammal",
-    "ImageURL": "/images/redFox/redfox4.png",
+    "ImageURL": "/images/redFox/Foxmain.jpg",
     "extraImages": [
     "/images/redFox/redfox1.png",
     "/images/redFox/redfox2.png",
@@ -43,7 +43,7 @@
         "BestTimeToSpot": "Morning and evening",
         "Sound": "High-pitched whistle",
         "Category": "Bird",
-        "ImageURL": "/images/Eagle/eagle1.png"
+        "ImageURL": "/images/Eagle/Eagle.jpg"
     },
 
     {   "SpeciesID": "S003",
@@ -63,7 +63,7 @@
     "BestTimeToSpot": "Dawn and dusk",
     "Sound": "Bleats and grunts",
     "Category": "Mammal",
-    "ImageURL": "/images/Deer/Deer1.png"
+    "ImageURL": "/images/Deer/Deer.jpg"
 },
 
 {
@@ -84,7 +84,7 @@
   "BestTimeToSpot": "Spring and summer.",
   "Sound": "Soft rustling leaves.",
   "Category": "Plant",
-  "ImageURL": "/images/wildrose/wildrose.png"
+  "ImageURL": "/images/wildrose/wildrose.jpg"
 },
 {
   "SpeciesID": "S023",
@@ -104,7 +104,7 @@
   "BestTimeToSpot": "Twilight hours",
   "Sound": "Silent except when distressed",
   "Category": "Mammal",
-  "ImageURL": "/images/Hare/Hare.png"
+  "ImageURL": "/images/Hare/hare.jpg"
 },
 {
   "SpeciesID": "S027",
@@ -124,6 +124,6 @@
   "BestTimeToSpot": "After rain",
   "Sound": "Silent",
   "Category": "Reptile",
-  "ImageURL": "/images/Turtle/turtle.png"
+  "ImageURL": "/images/Turtle/turtle.jpg"
 }
 ]
