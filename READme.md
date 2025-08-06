@@ -13,7 +13,7 @@ Anyone curious about the animals they encounter - just snap a photo and learn so
 
 ![Demo Preview](./Demo.gif)
 
-### Note: This project was built as a hands-on way to explore AWS services like S3, Lambda, API Gateway, and Rekognition. While the UI is responsive and offline functionality is planned, the current version focuses on the backend integration and image-based species recognition pipeline using cloud-native tools.
+#### Note: This project was built as a hands-on way to explore AWS services like S3, Lambda, API Gateway, and Rekognition. While the UI is responsive and offline functionality is planned, the current version focuses on the backend integration and image-based species recognition pipeline using cloud-native tools.
 
 ---
 
