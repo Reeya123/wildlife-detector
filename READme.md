@@ -3,6 +3,7 @@
 **Empowering Every Explorer with Wildlife Knowledge**  
 A React.js-based interactive web app that allows users to upload wildlife images and get AI-powered species identification.
 
+![Demo Preview](./demo.gif)
 ---
 
 ## ✨ Features
@@ -26,6 +27,20 @@ A React.js-based interactive web app that allows users to upload wildlife images
 ---
 
 ## 📂 Project Structure
+```
+WILDLIFE-DETECTOR/
+├── Backend/
+│   ├── lambda_functions/
+│   ├── README.md   ← documents the Lambda/API architecture
+├── Frontend/
+│   ├── src/
+│   ├── public/
+│   └── README.md   ← frontend-specific overview here
+├── .gitignore      ← root ignore file
+├── Architecture.png (visual diagram)
+├── README.md       ← root README for whole project 
+
+```
 ```
 wildlife-detector-frontend/
 │── public/                     # Static assets (images, icons, etc.)
@@ -62,6 +77,12 @@ cd wildlife-detector-frontend
 ```sh
 npm install
 ```
+#### Environment Variables
+
+Create a `.env` file inside the `Frontend/` folder using the structure below:
+
+```env
+REACT_APP_API_BASE_URL=https://your-api-id.execute-api.us-east-1.amazonaws.com/prd
 
 ### 3️⃣ Start the Development Server
 ```sh
@@ -87,14 +108,14 @@ The frontend is **visually engaging** and designed for an intuitive user experie
 
 ## 🖼️ Screenshots
 ### 🔍 **Landing Page**
-![Landing Page](https://your-image-url.com/landing-page.png)
+![Landing Page](/images/LandingPage.jpg)
 
 ### 🎯 **Upload & Species Detection**
-![Upload & Detection](https://your-image-url.com/upload-detection.png)
+![Upload & Detection](/images/Results.jpg)
 
 ### 🦌 **Species Info & Cards**
-![Species Cards](https://your-image-url.com/species-cards.png)
-
+![Species Cards](/images/Cards.jpg)
+![Species Cards](/images/CardDetails.jpg)
 ---
 
 ## 📢 Contributing
@@ -103,7 +124,7 @@ Want to help improve this project? Follow these steps:
 2. Create a **new branch** (`feature/new-animation`).
 3. **Commit** your changes (`git commit -m "Added animation effect"`).
 4. **Push** to GitHub (`git push origin feature/new-animation`).
-5. **Create a Pull Request** 🚀
+5. **Create a Pull Request** 
 
 
 ---
@@ -113,5 +134,5 @@ Want to help improve this project? Follow these steps:
 
 ---
 
-🔥 **Love this project?** Give it a ⭐ on [GitHub](https://github.com/your-username/wildlife-detector-frontend)!
+ **Love this project?** Give it a ⭐ on [GitHub](https://github.com/your-username/wildlife-detector-frontend)!
 
