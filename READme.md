@@ -34,7 +34,7 @@ Anyone curious about the animals they encounter - just snap a photo and learn so
 
 ---
 
-## 📂 Project Structure & Architecture
+## Project Structure & Architecture
 ```
 WILDLIFE-DETECTOR/
 ├── Backend/                   # Lambda function code (for reference)
@@ -49,7 +49,7 @@ WILDLIFE-DETECTOR/
 
 ---
 
-## 🛠️ Installation & Setup
+## Installation & Setup
 Follow these steps to set up the project locally:
 
 ### Clone the Repository
