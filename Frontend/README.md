@@ -1,3 +1,25 @@
+
+```
+wildlife-detector-frontend/
+│── public/                     # Static assets (images, icons, etc.)
+│── src/
+│   ├── components/              # Reusable UI components
+│   │   ├── LandingSection.js    # Upload & Hero Section
+│   │   ├── MatchedSpecies.js    # Results Section
+│   │   ├── SampleSpecies.js     # Popular Species Cards
+│   │   ├── SpeciesDetails.js    # Detailed view for a species
+│   ├── pages/
+│   │   ├── index.js             # Home page
+│   │   └── species/[id].js      # Dynamic species details page
+│   ├── styles/                  # Tailwind CSS & global styles
+│   ├── utils/                    # Helper functions
+│   ├── data/                     # Sample JSON data
+│── .gitignore                   # Git ignore files
+│── package.json                  # Project dependencies
+│── tailwind.config.js            # Tailwind CSS Config
+│── README.md                     # Project Documentation
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
