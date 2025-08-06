@@ -9,11 +9,11 @@ Nature lovers, hikers, and explorers who often spot animals on trails and want t
 
 Students or educators who want a simple tool to identify wildlife and teach biodiversity
 
-Anyone curious about the animals they encounter — just snap a photo and learn something cool
+Anyone curious about the animals they encounter - just snap a photo and learn something cool
 
 ![Demo Preview](./Demo.gif)
 
-#### This project was built as a hands-on way to explore AWS services like S3, Lambda, API Gateway, and Rekognition. While the UI is responsive and offline functionality is planned, the current version focuses on the backend integration and image-based species recognition pipeline using cloud-native tools.
+### Note: This project was built as a hands-on way to explore AWS services like S3, Lambda, API Gateway, and Rekognition. While the UI is responsive and offline functionality is planned, the current version focuses on the backend integration and image-based species recognition pipeline using cloud-native tools.
 
 ---
 
